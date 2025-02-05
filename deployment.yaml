@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Unique key of the Deployment instance
+  name: ecomm-deployment
+spec:
+  # 3 Pods should exist at all times.
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ecomm-deployment
+  template:
+    metadata:
+      labels:
+        # Apply this label to pods and default
+        # the Deployment label selector to this value
+        app: ecomm-deployment
+    spec:
+      containers:
+      - name: nginx-container
+        # Run this image
+        image: jayanthpodila/food:myimage
+        ports:
+        - containerPort: 80
